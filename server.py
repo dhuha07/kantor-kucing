@@ -36,7 +36,7 @@ MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 MAXTOK = int(os.getenv("KUCING_MAX_TOKENS", "16384"))
 TOKEN = _need("KUCING_TOKEN")
 ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "*").split(",") if o.strip()]
-ROOT = Path(os.getenv("KUCING_WORKSPACE", "workspaces")).resolve()
+ROOT = Path(os.getenv("KUCING_WORKSPACE", "/tmp/workspaces")).resolve()
 ROOT.mkdir(parents=True, exist_ok=True)
 client = genai.Client(api_key=_need("GEMINI_API_KEY"))
 SEM = asyncio.Semaphore(3)
