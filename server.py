@@ -34,7 +34,9 @@ def _need(name):
 
 MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 MAXTOK = int(os.getenv("KUCING_MAX_TOKENS", "16384"))
-TOKEN = _need("KUCING_TOKEN")
+TOKEN = os.getenv("KUCING_TOKEN")
+if not TOKEN:
+    raise RuntimeError("Variabel KUCING_TOKEN belum diisi di Vercel Environment Variables")
 ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "*").split(",") if o.strip()]
 ROOT = Path(os.getenv("KUCING_WORKSPACE", "/tmp/workspaces")).resolve()
 ROOT.mkdir(parents=True, exist_ok=True)
