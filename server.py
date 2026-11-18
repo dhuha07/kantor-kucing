@@ -352,9 +352,9 @@ class RunReq(BaseModel):
     context: str = Field(default="", max_length=1500)
 
 
-@app.get("/api/health")
-async def health():
-    return {"ok": True, "model": MODEL}
+@app.get("/")
+async def root():
+    return {"status": "ok", "message": "Kantor Kucing Backend is running"}
 
 
 @app.post("/api/run")
